@@ -33,6 +33,9 @@
       padding: 0;
       box-sizing: border-box;
     }
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       font-family: 'Nunito', sans-serif;
       line-height: 1.7;
@@ -66,6 +69,7 @@
     }
     .btn:hover {
       background-color: #0f2a5e;
+      color: white;
       transform: translateY(-2px);
     }
 
@@ -79,15 +83,15 @@
       z-index: 1000;
       padding: 10px 20px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
     }
-    .logo { width: 100px; height: 40px; }
+    .logo { width: 90px; height: 40px; flex: 0 0 auto; }
+    nav { flex: 1; display: flex; justify-content: center; }
     nav ul { list-style: none; display: flex; }
     nav ul li { margin: 0 15px; }
     nav ul li a { font-weight: 700; font-family: 'Poppins', sans-serif; }
     .menu-toggle { display: none; cursor: pointer; }
-    .theme-toggle {
+    .theme-toggle, .lang-toggle {
       cursor: pointer;
       font-size: 1.5rem;
       position: relative;
@@ -96,6 +100,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex: 0 0 auto;
     }
     .theme-icon {
       position: absolute;
@@ -115,6 +120,18 @@
       100% { transform: scale(1) rotate(360deg); }
     }
 
+    .lang-icon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: opacity 0.5s ease;
+      font-weight: bold;
+    }
+    .en { opacity: 1; }
+    .id { opacity: 0; }
+    [data-lang="id"] .en { opacity: 0; }
+    [data-lang="id"] .id { opacity: 1; }
+
     /* Hero */
     #hero {
       height: 100vh;
@@ -126,11 +143,14 @@
       background-color: var(--secondary-bg);
       padding: 0 20px;
     }
-    #hero img {
+    #hero .profile-image {
       width: 150px;
       height: 150px;
       border-radius: 50%;
       margin-bottom: 20px;
+      background-image: url('Circular_Frame_Image.png');
+      background-size: cover;
+      background-position: center;
     }
 
     /* ✨ Flowing Gradient Name */
@@ -138,17 +158,14 @@
       background: linear-gradient(90deg, #1e3a8a, #00bcd4, #1e3a8a);
       background-size: 200%;
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: slowFlow 8s ease-in-out infinite alternate;
-      transition: background-position 1.5s ease;
-    }
-    #hero h1:hover {
-      animation: fastFlow 3s linear infinite;
+      animation: slowFlow 5s linear infinite;
     }
 
     @keyframes slowFlow {
       0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
+      100% { background-position: 200% 50%; }
     }
     @keyframes fastFlow {
       0% { background-position: 0% 50%; }
@@ -167,12 +184,52 @@
     .card:hover { transform: translateY(-5px); }
     .skill-bar { background-color: var(--border-color); height: 10px; border-radius: 5px; margin: 10px 0; }
     .skill-fill { height: 100%; background-color: var(--accent-color); border-radius: 5px; }
+    .cert-image {
+      width: 100%;
+      height: 200px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
 
     /* Social Media */
-    .social-media { display: flex; justify-content: center; gap: 20px; margin-bottom: 30px; }
-    .social-media a { width: 50px; height: 50px; transition: transform 0.3s; }
-    .social-media a:hover { transform: scale(1.1); }
+    .social-media { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; }
+    .social-media a { width: 40px; height: 40px; }
     .social-media svg { width: 100%; height: 100%; fill: var(--accent-color); }
+
+    /* Fun Social Icon Animations */
+    .social-icon {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .social-icon:hover {
+      transform: scale(1.2) rotate(5deg);
+      box-shadow: 0 0 20px rgba(30, 58, 138, 0.5);
+      animation: bounce 0.6s ease;
+    }
+    .social-icon:active {
+      animation: spin 0.5s ease;
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: scale(1.2) rotate(5deg); }
+      40% { transform: scale(1.2) rotate(5deg); }
+      60% { transform: scale(1.2) rotate(5deg); }
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Mobile Adjustments */
+    @media (max-width: 768px) {
+      .social-icon:hover { transform: scale(1.1); animation: none; } /* Reduce on touch */
+    }
 
     /* Contact */
     form { max-width: 500px; margin: 0 auto; }
@@ -186,12 +243,25 @@
     }
     button { width: 100%; }
 
+
+
     /* Animations */
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
-    .animate { animation: fadeIn 1s ease-out; }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-10px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(10px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .animate.visible { animation: fadeIn 1s ease-out; }
+    .technical-skills { animation: slideInLeft 2s ease-out; }
+    .soft-skills { animation: slideInRight 2s ease-out; }
+    .certifications { animation: slideInLeft 2s ease-out; }
 
     /* Responsive */
     @media (max-width: 768px) {
@@ -224,6 +294,10 @@
       </ul>
       <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     </nav>
+    <div class="lang-toggle" onclick="toggleLanguage()">
+      <span class="lang-icon en">EN</span>
+      <span class="lang-icon id">ID</span>
+    </div>
     <div class="theme-toggle" onclick="toggleTheme()">
       <span class="theme-icon sun">🌞</span>
       <span class="theme-icon moon">🌙</span>
@@ -231,31 +305,32 @@
   </header>
 
   <section id="hero">
-    <img src="Circular_Frame_Image.png" alt="Your Photo">
+    <div class="profile-image"></div>
     <h1>Dery Putra</h1>
     <p>Software Engineer</p>
     <p>Building Secure, Scalable Software</p>
-    <a href="#skills" class="btn">Explore My Work</a>
-    <br>
-    <a href="#contact" class="btn">Get In Touch</a>
+    <div style="display: flex; justify-content: center; gap: 20px;">
+      <a href="#skills" class="btn">Explore My Work</a>
+      <a href="#contact" class="btn">Get In Touch</a>
+    </div>
   </section>
 
-  <section id="about" class="animate" style="text-align:center;">
+  <section id="about" class="animate" data-typed="false" style="text-align:center;">
     <h2>About Me</h2>
     <p>I am a motivated student pursuing a degree in Informatics at POLITEKNIK NEGERI BATAM, skilled in HTML, CSS, Tailwind CSS, JavaScript, PHP, Laravel, and React JS. I have hands-on experience in web development, video production, audio production, and graphic design. I completed a trainee program focused on software testing and web application projects. Detail-oriented and a strong team player, I am seeking an internship in Full-Stack Web Development to further hone my skills.</p>
   </section>
 
-  <section id="skills" class="animate" style="text-align:center;">
+  <section id="skills" class="animate" data-typed="false" style="text-align:center;">
     <h2>Skills & Certifications</h2>
     <div class="grid">
-      <div class="card">
+      <div class="card technical-skills">
         <h3>Technical Skills</h3>
         <p>Python: <div class="skill-bar"><div class="skill-fill" style="width: 90%;"></div></div></p>
         <p>JavaScript: <div class="skill-bar"><div class="skill-fill" style="width: 85%;"></div></div></p>
         <p>HTML: <div class="skill-bar"><div class="skill-fill" style="width: 85%;"></div></div></p>
         <p>PHP: <div class="skill-bar"><div class="skill-fill" style="width: 85%;"></div></div></p>
       </div>
-      <div class="card">
+      <div class="card soft-skills">
         <h3>Soft Skills</h3>
         <ul>
           <li>Problem-Solving</li>
@@ -263,6 +338,7 @@
           <li>Management Skills</li>
           <li>Creative Design</li>
           <li>Adaptability</li>
+          <li>Languages: Indonesian (Native), English (Fluent)</li>
         </ul>
         <br>
         <h3>Other Skills</h3>
@@ -273,34 +349,44 @@
           <li>Graphic Design</li>
         </ul>
       </div>
-      <div class="card">
+      <!-- <div class="card certifications">
         <h3>Certifications</h3>
-        <ul>
-          <li>CompTIA A+</li>
-          <li>AWS Certified</li>
-        </ul>
-      </div>
+        <div class="grid">
+          <div class="card">
+            <div class="cert-image" style="background-image: url('https://via.placeholder.com/300x200?text=CompTIA+A%2B+Certificate');"></div>
+            <h4>CompTIA A+</h4>
+            <p>Hardware and software troubleshooting certification.</p>
+          </div>
+          <div class="card">
+            <div class="cert-image" style="background-image: url('https://via.placeholder.com/300x200?text=AWS+Certified+Certificate');"></div>
+            <h4>AWS Certified</h4>
+            <p>Cloud computing and AWS services certification.</p>
+          </div>
+        </div>
+      </div> -->
     </div>
   </section>
 
+
+
   <section id="resume" class="animate" style="text-align:center;">
     <h2>Resume</h2>
-    <p><a href="path/to/resume.pdf" class="btn" download>Download Resume</a></p>
+    <p><a href="Dery_Putra_CV.pdf" class="btn" download="Dery_Putra_Resume.pdf">Download Resume</a></p>
   </section>
 
   <section id="contact" class="animate" style="text-align:center;">
     <h2>Contact</h2>
     <div class="social-media">
       <!-- LinkedIn -->
-      <a href="https://www.linkedin.com/in/dery-putra/" target="_blank" aria-label="LinkedIn">
+      <a href="https://www.linkedin.com/in/dery-putra/" target="_blank" aria-label="LinkedIn" class="social-icon">
         <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
       </a>
       <!-- GitHub -->
-      <a href="https://github.com/shikayri" target="_blank" aria-label="GitHub">
+      <a href="https://github.com/shikayri" target="_blank" aria-label="GitHub" class="social-icon">
         <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
       </a>
       <!-- Instagram -->
-      <a href="https://www.instagram.com/shikayri.exe/" target="_blank" aria-label="Instagram">
+      <a href="https://www.instagram.com/shikayri.exe/" target="_blank" aria-label="Instagram" class="social-icon">
         <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
       </a>
     </div>
@@ -313,7 +399,87 @@
     </form>
   </section>
 
+
+
+  <footer style="background-color: var(--secondary-bg); padding: 20px 20px; text-align: center; border-top: 1px solid var(--border-color);">
+    <p>&copy; 2023 Dery Putra. All rights reserved.</p>
+    <p><a href="#hero" style="color: var(--accent-color); text-decoration: none;">Back to Top</a></p>
+  </footer>
+
   <script>
+    const translations = {
+      en: {
+        home: "Home",
+        about: "About",
+        skills: "Skills",
+        resume: "Resume",
+        contact: "Contact",
+        aboutMe: "About Me",
+        skillsCertifications: "Skills & Certifications",
+        technicalSkills: "Technical Skills",
+        softSkills: "Soft Skills",
+        otherSkills: "Other Skills",
+        certifications: "Certifications",
+        exploreMyWork: "Explore My Work",
+        getInTouch: "Get In Touch",
+        downloadResume: "Download Resume",
+        sendMessage: "Send Message",
+        backToTop: "Back to Top",
+        yourName: "Your Name",
+        yourEmail: "Your Email",
+        yourMessage: "Your Message",
+        softwareEngineer: "Software Engineer",
+        buildingSecure: "Building Secure, Scalable Software",
+        aboutText: "I am a motivated student pursuing a degree in Informatics at POLITEKNIK NEGERI BATAM, skilled in HTML, CSS, Tailwind CSS, JavaScript, PHP, Laravel, and React JS. I have hands-on experience in web development, video production, audio production, and graphic design. I completed a trainee program focused on software testing and web application projects. Detail-oriented and a strong team player, I am seeking an internship in Full-Stack Web Development to further hone my skills.",
+        problemSolving: "Problem-Solving",
+        teamwork: "Teamwork",
+        managementSkills: "Management Skills",
+        creativeDesign: "Creative Design",
+        adaptability: "Adaptability",
+        languages: "Languages: Indonesian (Native), English (Fluent)",
+        microsoft365: "Microsoft 365",
+        videoProduction: "Video Production & Editing",
+        audioEditing: "Audio Editing",
+        graphicDesign: "Graphic Design",
+        copyright: "&copy; 2023 Dery Putra. All rights reserved."
+      },
+      id: {
+        home: "Beranda",
+        about: "Tentang",
+        skills: "Keterampilan",
+        resume: "Resume",
+        contact: "Kontak",
+        aboutMe: "Tentang Saya",
+        skillsCertifications: "Keterampilan & Sertifikasi",
+        technicalSkills: "Keterampilan Teknis",
+        softSkills: "Keterampilan Lunak",
+        otherSkills: "Keterampilan Lain",
+        certifications: "Sertifikasi",
+        exploreMyWork: "Jelajahi Karya Saya",
+        getInTouch: "Hubungi Saya",
+        downloadResume: "Unduh Resume",
+        sendMessage: "Kirim Pesan",
+        backToTop: "Kembali ke Atas",
+        yourName: "Nama Anda",
+        yourEmail: "Email Anda",
+        yourMessage: "Pesan Anda",
+        softwareEngineer: "Insinyur Perangkat Lunak",
+        buildingSecure: "Membangun Perangkat Lunak Aman dan Skalabel",
+        aboutText: "Saya adalah mahasiswa yang termotivasi yang mengejar gelar di Informatika di POLITEKNIK NEGERI BATAM, terampil dalam HTML, CSS, Tailwind CSS, JavaScript, PHP, Laravel, dan React JS. Saya memiliki pengalaman langsung dalam pengembangan web, produksi video, produksi audio, dan desain grafis. Saya menyelesaikan program trainee yang fokus pada pengujian perangkat lunak dan proyek aplikasi web. Berorientasi detail dan pemain tim yang kuat, saya mencari magang di Pengembangan Web Full-Stack untuk lebih meningkatkan keterampilan saya.",
+        problemSolving: "Pemecahan Masalah",
+        teamwork: "Kerja Tim",
+        managementSkills: "Keterampilan Manajemen",
+        creativeDesign: "Desain Kreatif",
+        adaptability: "Kemampuan Adaptasi",
+        languages: "Bahasa: Indonesia (Asli), Inggris (Lancar)",
+        microsoft365: "Microsoft 365",
+        videoProduction: "Produksi & Editing Video",
+        audioEditing: "Editing Audio",
+        graphicDesign: "Desain Grafis",
+        copyright: "&copy; 2023 Dery Putra. Hak cipta dilindungi."
+      }
+    };
+
     function toggleTheme() {
       const body = document.body;
       const themeToggle = document.querySelector('.theme-toggle');
@@ -323,22 +489,122 @@
       setTimeout(() => themeToggle.classList.remove('animating'), 500);
     }
 
+    function toggleLanguage() {
+      const body = document.body;
+      const currentLang = body.getAttribute('data-lang') || 'en';
+      const newLang = currentLang === 'en' ? 'id' : 'en';
+      body.setAttribute('data-lang', newLang);
+      localStorage.setItem('lang', newLang);
+      updateLanguage(newLang);
+    }
+
+    function typewriter(element, text, speed = 100) {
+      element.textContent = '';
+      let i = 0;
+      const timer = setInterval(() => {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+        } else {
+          clearInterval(timer);
+        }
+      }, speed);
+    }
+
+    function typeSection(id) {
+      const t = translations[document.body.getAttribute('data-lang') || 'en'];
+      if (id === 'about') {
+        const aboutH2 = document.querySelector('#about h2');
+        const aboutP = document.querySelector('#about p');
+        aboutH2.textContent = '';
+        aboutP.textContent = '';
+        typewriter(aboutH2, t.aboutMe);
+        typewriter(aboutP, t.aboutText);
+      } else if (id === 'skills') {
+        const softSkillsLis = document.querySelectorAll('.soft-skills ul:first-of-type li');
+        const otherSkillsLis = document.querySelectorAll('.soft-skills ul:last-of-type li');
+        softSkillsLis.forEach(li => li.textContent = '');
+        otherSkillsLis.forEach(li => li.textContent = '');
+        if (softSkillsLis[0]) typewriter(softSkillsLis[0], t.problemSolving);
+        if (softSkillsLis[1]) typewriter(softSkillsLis[1], t.teamwork);
+        if (softSkillsLis[2]) typewriter(softSkillsLis[2], t.managementSkills);
+        if (softSkillsLis[3]) typewriter(softSkillsLis[3], t.creativeDesign);
+        if (softSkillsLis[4]) typewriter(softSkillsLis[4], t.adaptability);
+        if (softSkillsLis[5]) typewriter(softSkillsLis[5], t.languages);
+        if (otherSkillsLis[0]) typewriter(otherSkillsLis[0], t.microsoft365);
+        if (otherSkillsLis[1]) typewriter(otherSkillsLis[1], t.videoProduction);
+        if (otherSkillsLis[2]) typewriter(otherSkillsLis[2], t.audioEditing);
+        if (otherSkillsLis[3]) typewriter(otherSkillsLis[3], t.graphicDesign);
+      }
+    }
+
+    function updateLanguage(lang) {
+      const t = translations[lang];
+      // Short texts: instant
+      document.querySelector('a[href="#hero"]').textContent = t.home;
+      document.querySelector('a[href="#about"]').textContent = t.about;
+      document.querySelector('a[href="#skills"]').textContent = t.skills;
+      document.querySelector('a[href="#resume"]').textContent = t.resume;
+      document.querySelector('a[href="#contact"]').textContent = t.contact;
+      document.querySelector('#skills h2').textContent = t.skillsCertifications;
+      document.querySelectorAll('#skills h3')[0].textContent = t.technicalSkills;
+      document.querySelectorAll('#skills h3')[1].textContent = t.softSkills;
+      document.querySelectorAll('#skills h3')[2].textContent = t.otherSkills;
+      document.querySelectorAll('#skills h3')[3].textContent = t.certifications;
+      document.querySelector('a[href="#skills"]').textContent = t.exploreMyWork;
+      document.querySelector('a[href="#contact"]').textContent = t.getInTouch;
+      document.querySelector('#resume a').textContent = t.downloadResume;
+      document.querySelector('#contact h2').textContent = t.contact;
+      document.querySelector('#contact form button[type="submit"]').textContent = t.sendMessage;
+      document.querySelector('#contact form input[name="name"]').placeholder = t.yourName;
+      document.querySelector('#contact form input[name="email"]').placeholder = t.yourEmail;
+      document.querySelector('#contact form textarea[name="message"]').placeholder = t.yourMessage;
+      document.querySelector('a[href="#hero"]:last-of-type').textContent = t.backToTop;
+      // Hero section
+      const heroPs = document.querySelectorAll('#hero p');
+      heroPs[0].textContent = t.softwareEngineer;
+      heroPs[1].textContent = t.buildingSecure;
+      // Footer
+      document.querySelector('footer p').innerHTML = t.copyright;
+
+      // Reset typed sections
+      document.querySelector('#about').setAttribute('data-typed', 'false');
+      document.querySelector('#skills').setAttribute('data-typed', 'false');
+
+      // Trigger typing if visible
+      checkVisibility();
+    }
+
     function toggleMenu() {
       document.getElementById('nav-menu').classList.toggle('show');
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('lang') || 'en';
+      document.body.setAttribute('data-lang', savedLang);
+      updateLanguage(savedLang);
+
       const elements = document.querySelectorAll('.animate');
       const checkVisibility = () => {
         elements.forEach(el => {
           const rect = el.getBoundingClientRect();
-          if (rect.top < window.innerHeight && rect.bottom > 0) el.classList.add('visible');
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            el.classList.add('visible');
+            if (el.hasAttribute('data-typed') && el.getAttribute('data-typed') === 'false') {
+              el.setAttribute('data-typed', 'true');
+              typeSection(el.id);
+            }
+          }
         });
       };
       window.addEventListener('scroll', checkVisibility);
-      checkVisibility();
+
+      // Prevent right-click on images to disable download via context menu
+      const images = document.querySelectorAll('img');
+      images.forEach(img => {
+        img.addEventListener('contextmenu', (e) => {
+          e.preventDefault();
+        });
+      });
     });
   </script>
-
-</body>
-</html>
