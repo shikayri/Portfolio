@@ -94,7 +94,7 @@
       display: flex;
       align-items: center;
     }
-    .logo { width: 90px; height: 40px; flex: 0 0 auto; }
+    .logo { width: 90px; height: 40px; flex: 0 0 auto; background-image: url('Dery_Putra_Favicon_Square _Format_NBG.png'); background-size: cover; background-position: center; }
     nav { flex: 1; display: flex; justify-content: center; }
     nav ul { list-style: none; display: flex; }
     nav ul li { margin: 0 15px; }
@@ -292,7 +292,7 @@
 <body data-theme="light">
 
   <header>
-    <img src="Dery_Putra_Favicon_Square _Format_NBG.png" alt="Dery Putra Logo" class="logo">
+    <img src="Dery_Putra_Favicon_Square _Format_NBG.png" alt="Dery Putra Logo" class="logo" oncontextmenu="return false;">
     <nav>
       <ul id="nav-menu">
         <li><a href="#hero">Home</a></li>
@@ -400,11 +400,11 @@
       </a>
     </div>
 
-    <form action="#" method="post">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit" class="btn">Send Message</button>
+    <form action="https://formspree.io/f/movkbbpz" method="POST">
+      <input type="text" name="name" placeholder="Your name" required>
+      <input type="email" name="email" placeholder="Your email" required>
+      <textarea name="message" placeholder="Your message" required></textarea>
+      <button type="submit" class="btn">Send</button>
     </form>
   </section>
 
@@ -608,12 +608,13 @@
       };
       window.addEventListener('scroll', checkVisibility);
 
-      // Prevent right-click on images to disable download via context menu
-      const images = document.querySelectorAll('img');
-      images.forEach(img => {
-        img.addEventListener('contextmenu', (e) => {
+      // Prevent right-click on logo to disable download via context menu
+      const logo = document.querySelector('.logo');
+      if (logo) {
+        logo.addEventListener('contextmenu', (e) => {
           e.preventDefault();
         });
-      });
+        logo.oncontextmenu = () => false;
+      }
     });
   </script>
