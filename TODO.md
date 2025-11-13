@@ -1,4 +1,4 @@
-# TODO List for Adding Social Media Section to index.html
-
-- [x] Update the navigation menu to include a "Social" link
-- [x] Add a new "Social Media" section with links for Facebook, Instagram, Github, Linkedin, and Whatsapp
+- [ ] Add LinkedIn badge script to head
+- [ ] Add LinkedIn badge HTML for light and dark themes in contact section
+- [ ] Add CSS to toggle badge visibility based on theme
+- [ ] Test badge rendering and theme switching
