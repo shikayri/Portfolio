@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me - Dery Putra</title>
+  <meta name="description" content="Learn more about Dery Putra, his background, interests, and personal life.">
+  <link rel="icon" type="image/svg+xml" href="Dery_Putra_Favicon.svg">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BD1SNDT1EN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BD1SNDT1EN');
+  </script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Variables for Theme */
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #333333;
+      --accent-color: #1e3a8a;
+      --secondary-bg: #f4f4f4;
+      --border-color: #e0e0e0;
+    }
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #ffffff;
+      --accent-color: lightblue;
+      --secondary-bg: #1e1e1e;
+      --border-color: #333333;
+    }
+
+    /* Global */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Nunito', sans-serif;
+      line-height: 1.7;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+      transition: background-color 0.3s, color 0.3s;
+    }
+    a { color: var(--accent-color); text-decoration: none; }
+    a:hover { text-decoration: underline; color: #0f2a5e; }
+    section { padding: 60px 20px; max-width: 1200px; margin: 0 auto; }
+
+    h1, h2, h3 {
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 20px;
+    }
+    h1 { font-size: 2.7rem; letter-spacing: 1px; }
+    h2 { font-size: 2rem; color: var(--accent-color); }
+    h3 { font-size: 1.5rem; }
+
+    p { margin-bottom: 15px; font-size: 1.05rem; }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: var(--accent-color);
+      color: white;
+      border-radius: 5px;
+      transition: background-color 0.3s, transform 0.2s;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .btn:hover {
+      background-color: #0f2a5e;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: var(--bg-color);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 1000;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+    }
+    .logo { width: 90px; height: 40px; flex: 0 0 auto; }
+    nav { flex: 1; display: flex; justify-content: center; }
+    nav ul { list-style: none; display: flex; }
+    nav ul li { margin: 0 15px; }
+    nav ul li a { font-weight: 700; font-family: 'Poppins', sans-serif; }
+    .menu-toggle { display: none; cursor: pointer; }
+    .theme-toggle, .lang-toggle {
+      cursor: pointer;
+      font-size: 1.5rem;
+      position: relative;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+    }
+    .theme-icon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: opacity 0.5s ease;
+    }
+    .theme-toggle.animating .theme-icon { animation: warp 0.5s ease; }
+    .sun { opacity: 1; }
+    .moon { opacity: 0; }
+        [data-theme="dark"] .sun { opacity: 0; }
+        [data-theme="dark"] .moon { opacity: 1; }
+    @keyframes warp {
+      0% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(0.5) rotate(180deg); }
+      100% { transform: scale(1) rotate(360deg); }
+    }
+
+    .lang-icon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: opacity 0.5s ease;
+      font-weight: bold;
+    }
+    .en { opacity: 1; }
+    .id { opacity: 0; }
+    [data-lang="id"] .en { opacity: 0; }
+    [data-lang="id"] .id { opacity: 1; }
+
+    /* Grid / Cards */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .card {
+      background-color: var(--secondary-bg);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .card:hover { transform: translateY(-5px); }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .animate.visible { animation: fadeIn 1s ease-out; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-color);
+      }
+      nav ul.show { display: flex; }
+      .menu-toggle { display: block; }
+    }
+  </style>
+</head>
+<body data-theme="light">
+
+  <header>
+    <img src="Dery_Putra_Favicon_Square _Format_NBG.png" alt="Dery Putra Logo" class="logo" oncontextmenu="return false;">
+    <nav>
+      <ul id="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#personal">Personal</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    </nav>
+    <div class="lang-toggle" onclick="toggleLanguage()">
+      <span class="lang-icon en">EN</span>
+      <span class="lang-icon id">ID</span>
+    </div>
+    <div class="theme-toggle" onclick="toggleTheme()">
+      <span class="theme-icon sun">🌞</span>
+      <span class="theme-icon moon">🌙</span>
+    </div>
+  </header>
+  <br>
+  <section id="about" class="animate" style="text-align:center;">
+    <h2>About Me</h2>
+    <p>I am a motivated student pursuing a degree in Informatics at POLITEKNIK NEGERI BATAM, skilled in HTML, CSS, Tailwind CSS, JavaScript, PHP, Laravel, and React JS. I have hands-on experience in web development, video production, audio production, and graphic design. I completed a trainee program focused on software testing and web application projects. Detail-oriented and a strong team player, I am seeking an internship in Full-Stack Web Development to further hone my skills.</p>
+  </section>
+
+  <section id="personal" class="animate" style="text-align:center;">
+    <h2>Personal Life</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Hobbies</h3>
+        <ul>
+          <li>Gaming</li>
+          <li>Reading tech blogs</li>
+          <li>Photography</li>
+          <li>Music</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Interests</h3>
+        <ul>
+          <li>Artificial Intelligence</li>
+          <li>Cybersecurity</li>
+          <li>Open Source Projects</li>
+          <li>UI/UX Design</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Personal Projects</h3>
+        <ul>
+          <li>Personal website development</li>
+          <li>Video editing tutorials</li>
+          <li>Graphic design portfolios</li>
+          <li>Learning new programming languages</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="blog" class="animate" style="text-align:center;">
+    <h2>Blog</h2>
+    <p>Coming soon! I plan to share my thoughts on technology, development tips, and personal experiences.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Latest Post</h3>
+        <p>Stay tuned for my first blog post!</p>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background-color: var(--secondary-bg); padding: 20px 20px; text-align: center; border-top: 1px solid var(--border-color);">
+    <p>&copy; 2023 Dery Putra. All rights reserved.</p>
+    <p><a href="#about" style="color: var(--accent-color); text-decoration: none;">Back to Top</a></p>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const themeToggle = document.querySelector('.theme-toggle');
+      const isDark = body.getAttribute('data-theme') === 'dark';
+      const newTheme = isDark ? 'light' : 'dark';
+      body.setAttribute('data-theme', newTheme);
+      themeToggle.classList.add('animating');
+      setTimeout(() => themeToggle.classList.remove('animating'), 500);
+    }
+
+    function toggleLanguage() {
+      const body = document.body;
+      const currentLang = body.getAttribute('data-lang') || 'en';
+      const newLang = currentLang === 'en' ? 'id' : 'en';
+      body.setAttribute('data-lang', newLang);
+      localStorage.setItem('lang', newLang);
+    }
+
+    function toggleMenu() {
+      document.getElementById('nav-menu').classList.toggle('show');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Scroll to top on page refresh
+      window.scrollTo(0, 0);
+
+      const savedLang = localStorage.getItem('lang') || 'en';
+      document.body.setAttribute('data-lang', savedLang);
+
+      const elements = document.querySelectorAll('.animate');
+      const checkVisibility = () => {
+        elements.forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            el.classList.add('visible');
+          }
+        });
+      };
+      window.addEventListener('scroll', checkVisibility);
+
+      // Prevent right-click on logo to disable download via context menu
+      const logo = document.querySelector('.logo');
+      if (logo) {
+        logo.addEventListener('contextmenu', (e) => {
+          e.preventDefault();
+        });
+        logo.oncontextmenu = () => false;
+      }
+    });
+  </script>
+</body>
+</html>
