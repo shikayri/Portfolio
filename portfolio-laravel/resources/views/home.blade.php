@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dery Putra - IT Portfolio</title>
   <meta name="description" content="Portfolio of Dery Putra, an IT professional specializing in cloud, cybersecurity, and web development.">
-  <link rel="icon" type="image/svg+xml" href="Dery_Putra_Favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="{{ asset('svgs/Dery_Putra_Favicon.svg') }}">
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BD1SNDT1EN"></script>
@@ -18,8 +18,6 @@
 
   <!-- 🪄 Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-
-
 
   <style>
     /* Variables for Theme */
@@ -166,7 +164,7 @@
       height: 150px;
       border-radius: 50%;
       margin-bottom: 20px;
-      background-image: url('Circular_Frame_Image.png');
+  background-image: url('{{ asset('images/Circular_Frame_Image.png') }}');
       background-size: cover;
       background-position: center;
     }
@@ -328,14 +326,13 @@
 <body data-theme="light">
 
   <header>
-    <img src="Dery_Putra_Favicon_Square _Format_NBG.png" alt="Dery Putra Logo" class="logo" oncontextmenu="return false;">
+    <img src="{{ asset('images/Dery_Putra_Favicon_Square _Format_NBG.png') }}" alt="Dery Putra Logo" class="logo" oncontextmenu="return false;">
     <nav>
       <ul id="nav-menu">
         <li><a href="#hero">Home</a></li>
-        <li><a href="about.html">About</a></li>
+        <li><a href="{{ route('about') }}">About</a></li>
         <li><a href="#portfolio">Portfolio</a></li>
         <li><a href="#skills">Skills</a></li>
-        <li><a href="#resume">Resume</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="menu-toggle" onclick="toggleMenu()">☰</div>
@@ -361,17 +358,12 @@
     </div>
   </section>
 
-  <!-- <section id="about" class="animate" data-typed="false" style="text-align:center;">
-    <h2>About Me</h2> 
-    <p>I am a motivated student pursuing a degree in Informatics at POLITEKNIK NEGERI BATAM, skilled in HTML, CSS, Tailwind CSS, JavaScript, PHP, Laravel, and React JS. I have hands-on experience in web development, video production, audio production, and graphic design. I completed a trainee program focused on software testing and web application projects. Detail-oriented and a strong team player, I am seeking an internship in Full-Stack Web Development to further hone my skills.</p>
-  </section> -->
-
 <section id="portfolio" class="animate" style="text-align:center;">
   <h2>Portfolio</h2>
   <div class="portfolio-container">
     <video id="portfolio-video" class="portfolio-image" muted playsinline>
-      <source src="PortfolioWebRelatedWhite-ezgif.com-gif-to-webm-converter.webm" type="video/webm">
-      <source src="PortfolioWebRelated-ezgif.com-gif-to-webm-converter.gif" type="image/gif">
+  <source src="{{ asset('videos/PortfolioWebRelatedWhite-ezgif.com-gif-to-webm-converter.webm') }}" type="video/webm">
+      <source src="{{ asset('PortfolioWebRelated-ezgif.com-gif-to-webm-converter.gif') }}" type="image/gif">
     </video>
   </div>
 </section>
@@ -405,29 +397,7 @@
           <li>Graphic Design</li>
         </ul>
       </div>
-      <!-- <div class="card certifications">
-        <h3>Certifications</h3>
-        <div class="grid">
-          <div class="card">
-            <div class="cert-image" style="background-image: url('https://via.placeholder.com/300x200?text=CompTIA+A%2B+Certificate');"></div>
-            <h4>CompTIA A+</h4>
-            <p>Hardware and software troubleshooting certification.</p>
-          </div>
-          <div class="card">
-            <div class="cert-image" style="background-image: url('https://via.placeholder.com/300x200?text=AWS+Certified+Certificate');"></div>
-            <h4>AWS Certified</h4>
-            <p>Cloud computing and AWS services certification.</p>
-          </div>
-        </div>
-      </div> -->
     </div>
-  </section>
-
-
-
-  <section id="resume" class="animate" style="text-align:center;">
-    <h2>Resume</h2>
-    <p><a href="Dery_Putra_CV.pdf" class="btn" download="Dery_Putra_Resume.pdf">Download Resume</a></p>
   </section>
 
   <section id="contact" class="animate" style="text-align:center;">
@@ -445,18 +415,11 @@
       <a href="https://www.instagram.com/shikayri.exe/" target="_blank" aria-label="Instagram" class="social-icon">
         <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
       </a>
-      <!-- Trakteer -->
-      <!-- <a href="https://trakteer.id/ary-epyz2" target="_blank" aria-label="Trakteer" class="social-icon"> -->
-        <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><path fill="#1e3a8a" d="M0 0 C0.69327355 -0.00205263 1.3865471 -0.00410527 2.10082895 -0.0062201 C4.42318923 -0.01187315 6.7454899 -0.01043495 9.06785583 -0.00901413 C10.75010051 -0.01159875 12.43234457 -0.01461218 14.11458778 -0.01801753 C18.73724986 -0.02607961 23.35989641 -0.02787666 27.98256469 -0.028615 C32.96846288 -0.03046696 37.95435304 -0.03801508 42.94024658 -0.04475021 C53.84337504 -0.05832905 64.74649981 -0.06435773 75.64963531 -0.06876087 C82.45971759 -0.07152439 89.26979845 -0.07576198 96.07987976 -0.08026505 C114.94047456 -0.09245777 133.80106822 -0.10275666 152.66166687 -0.10614014 C154.47219748 -0.10646949 154.47219748 -0.10646949 156.31930447 -0.10680549 C157.52919316 -0.10702377 158.73908186 -0.10724204 159.98563385 -0.10746694 C162.4372762 -0.1079104 164.88891856 -0.10835696 167.34056091 -0.10880661 C168.556657 -0.10902804 169.77275309 -0.10924947 171.02570057 -0.10947761 C190.72261769 -0.11342405 210.41949778 -0.13087337 230.1164006 -0.15416613 C250.34614162 -0.17789556 270.57586408 -0.19034274 290.80561924 -0.19150805 C302.16088439 -0.19242399 313.51610131 -0.19815562 324.87135315 -0.21632767 C334.54252627 -0.23175021 344.21363625 -0.23683645 353.88481933 -0.22858956 C358.81614188 -0.22469053 363.74733737 -0.22557609 368.67864418 -0.23964691 C373.2004114 -0.25243073 377.72195665 -0.25114917 382.24372375 -0.2390562 C383.87231782 -0.23710692 385.50092787 -0.24014173 387.12949955 -0.24890056 C403.19436149 -0.32977298 417.11046737 2.93023492 431.91331482 9.13142776 C433.45632263 9.77531448 433.45632263 9.77531448 435.03050232 10.43220901 C460.89592704 22.31348134 481.80620689 46.20841147 491.67503357 72.69783401 C496.50160633 86.435877 498.21211906 99.16211713 498.18746948 113.72624588 C498.19192837 115.39544432 498.19724455 117.06464064 498.20333821 118.73383391 C498.2174509 123.29749363 498.21918278 127.86108503 498.2187413 132.42476344 C498.2203955 137.35618403 498.23347336 142.28757696 498.24493408 147.2189827 C498.26773793 157.99212467 498.27569993 168.76524688 498.28076053 179.53840971 C498.28402334 186.27336385 498.29054939 193.00831232 498.29776192 199.74326324 C498.3173229 218.41360603 498.33372969 237.08394356 498.33663845 255.75429726 C498.33682602 256.94797829 498.33701359 258.14165932 498.33720684 259.37151251 C498.33757308 261.7910974 498.33793678 264.21068229 498.33829796 266.63026719 C498.33848077 267.83125076 498.33866358 269.03223434 498.33885193 270.26961136 C498.33912275 272.0733022 498.33912275 272.0733022 498.33939905 273.91343124 C498.34293804 293.38223899 498.36994553 312.85093594 498.40734982 332.31970529 C498.44550067 352.33833053 498.46479643 372.35690089 498.46509796 392.37556326 C498.46568105 403.60302087 498.47407705 414.83034634 498.50309563 426.05776978 C498.52770044 435.62105865 498.53483134 445.18416721 498.5198481 454.74747925 C498.51271596 459.61903028 498.51337552 464.4902259 498.5362587 469.3617363 C498.71054758 508.87007918 492.28913294 539.3123747 464.28831482 569.13142776 C450.5549185 582.40251173 433.39623549 592.33277312 414.91331482 597.13142776 C413.49393377 597.50308026 413.49393377 597.50308026 412.04587835 597.88224089 C402.582234 600.14150621 393.59534703 600.5564176 383.9173584 600.51237869 C382.24129398 600.51584266 380.56523185 600.52061215 378.8891744 600.52656043 C374.32066246 600.53899874 369.75234031 600.53293295 365.183828 600.52360177 C360.24235142 600.51678197 355.30090626 600.52730701 350.35943604 600.53554153 C340.69347975 600.5488502 331.02759354 600.54601384 321.36163456 600.53730361 C313.50215604 600.53051578 305.64269709 600.5296151 297.78321648 600.53287506 C296.10236303 600.53356461 296.10236303 600.53356461 294.38755296 600.53426809 C292.1107984 600.53522731 289.83404384 600.53619995 287.55728929 600.53718586 C266.23010276 600.54573146 244.90295496 600.53591886 223.57577478 600.51978476 C205.29642302 600.50638418 187.01712843 600.50870916 168.73777771 600.52254105 C147.48605469 600.53861469 126.2343656 600.54490564 104.98263735 600.53570426 C102.71416788 600.53474866 100.44569841 600.53380554 98.17722893 600.53287506 C97.06124067 600.53241223 95.94525241 600.53194941 94.79544633 600.53147256 C86.95058812 600.52888789 79.10575154 600.53324241 71.26089668 600.54031372 C61.69314222 600.54874884 52.12546155 600.54640644 42.55771548 600.53047149 C37.68090193 600.52261554 32.80421118 600.51945127 27.92739868 600.52941895 C23.45461465 600.53842219 18.98206611 600.53334122 14.50930315 600.51748629 C12.89977729 600.51416213 11.29023113 600.51577857 9.68071855 600.52311365 C-20.9861534 600.65204445 -48.40331007 588.71878129 -70.27418518 567.38142776 C-88.27628192 549.16778361 -102.18321161 522.86473933 -102.22090626 496.93007469 C-102.22325849 496.23654608 -102.22561072 495.54301748 -102.22803423 494.82847285 C-102.2346759 492.5112391 -102.23426748 490.19406204 -102.2338562 487.87681961 C-102.23715784 486.19584979 -102.24088404 484.51488076 -102.24499768 482.83391273 C-102.25499169 478.21930372 -102.25873028 473.60470771 -102.26138699 468.99008942 C-102.26529778 464.01096675 -102.27487558 459.03185431 -102.28359985 454.05273819 C-102.30334258 442.0302572 -102.31342778 430.00777539 -102.32232764 417.98528224 C-102.32671421 412.31912132 -102.33208007 406.65296133 -102.33731651 400.98680115 C-102.35432674 382.14332969 -102.36881992 363.2998588 -102.37606525 344.45638084 C-102.37797505 339.56876627 -102.37989539 334.6811517 -102.3818512 329.79353714 C-102.38233494 328.57879349 -102.38281868 327.36404983 -102.38331708 326.11249577 C-102.39161374 306.44352298 -102.41694546 286.77461108 -102.44943187 267.10566486 C-102.48253615 246.89734819 -102.50051707 226.68906242 -102.5037095 206.48071849 C-102.50587149 195.14044535 -102.51457461 183.800261 -102.54017067 172.46001434 C-102.56192371 162.80028474 -102.56990547 153.14066551 -102.56020389 143.48091419 C-102.55567251 138.55727532 -102.55747748 133.63386395 -102.57696533 128.71025658 C-102.59469332 124.19201809 -102.59352192 119.67417144 -102.57806804 115.15592824 C-102.5757065 113.5320186 -102.57993893 111.90808113 -102.59189669 110.2842138 C-102.68898619 96.21398873 -100.59011719 82.58943638 -94.96168518 69.56892776 C-94.66874573 68.87968216 -94.37580627 68.19043655 -94.07398987 67.48030472 C-88.24422246 54.28827955 -80.23354255 43.30945827 -70.08668518 33.13142776 C-69.22688049 32.26517776 -68.36707581 31.39892776 -67.48121643 30.50642776 C-50.1200166 13.28683642 -24.89662026 0.02517779 0 0 Z M142.91331482 106.13142776 C134.66006815 116.54130171 130.99418142 127.92314037 131.91331482 141.13142776 C133.85486934 153.89961679 139.81898018 164.04668501 149.91331482 172.13142776 C159.4447619 178.13842613 168.7453459 180.54505624 179.91331482 180.13142776 C179.66581482 178.89392776 179.66581482 178.89392776 179.41331482 177.63142776 C177.59274905 164.8874674 180.64614259 152.7577963 187.91331482 142.13142776 C194.96281541 132.81425565 206.54594798 127.1775538 217.91331482 125.13142776 C217.47691264 116.83978643 211.54356146 108.89261037 205.91331482 103.13142776 C186.12881383 87.72197299 161.12652973 88.33214956 142.91331482 106.13142776 Z M198.91331482 148.13142776 C193.39881581 155.82082617 190.52016599 162.83300699 190.53831482 172.38142776 C190.53775085 173.12779495 190.53718689 173.87416214 190.53660583 174.64314651 C190.65519159 180.62557118 191.45439947 187.67251242 195.91331482 192.13142776 C197.93825713 192.22552255 199.96651352 192.24885898 201.99363708 192.24495316 C203.29491043 192.24487762 204.59618378 192.24480209 205.93688965 192.24472427 C207.36783384 192.23961685 208.79877764 192.23440085 210.22972107 192.22908401 C211.68560742 192.2272198 213.14149439 192.22579591 214.59738159 192.2247963 C218.43610861 192.22097142 222.27479801 192.2111414 226.11351013 192.20009232 C230.02789298 192.18987754 233.94228188 192.18529853 237.85667419 192.18025589 C245.54223825 192.1695191 253.22777127 192.15244305 260.91331482 192.13142776 C261.56424072 190.88407209 262.20883151 189.63340945 262.85081482 188.38142776 C263.21046326 187.68533401 263.57011169 186.98924026 263.94065857 186.27205276 C267.58865569 178.24352898 267.05831735 167.40049129 264.28831482 159.19392776 C262.19200219 154.23633229 259.52561556 150.11197275 255.91331482 146.13142776 C255.42347107 145.58744339 254.93362732 145.04345901 254.42893982 144.48299026 C247.43394434 137.66113824 237.99243966 134.86267621 228.41331482 134.50642776 C216.62274699 134.9683263 206.67234179 139.13658803 198.91331482 148.13142776 Z M110.53831482 210.88142776 C108.25919786 215.43966168 107.14265047 219.21583748 108.47190857 224.24470901 C110.41119576 228.82142679 113.03802545 231.60333891 117.28242111 234.11124039 C122.97309388 236.31792495 129.21175527 235.80408226 135.23020935 235.74666214 C136.77829089 235.75016729 138.32636881 235.75583032 139.87443542 235.76347733 C144.0604228 235.77767613 148.24574942 235.76071388 152.43167353 235.73719215 C156.81974651 235.71702732 161.20779356 235.72296551 165.59590149 235.72529984 C172.96141915 235.72524634 180.32667965 235.70552997 187.69212341 235.67341995 C196.20145759 235.63650289 204.71045543 235.62774892 213.21985924 235.63471746 C221.4168864 235.64102662 229.61379853 235.6302623 237.81080246 235.61075211 C241.2947186 235.60258838 244.77857586 235.59986665 248.26250076 235.60144424 C252.36499734 235.60232442 256.46717523 235.58807149 260.56958771 235.56221771 C262.07318705 235.55506814 263.57682033 235.55296647 265.08043289 235.55633545 C267.1364086 235.5600628 269.19146059 235.54526123 271.24732971 235.52583694 C272.39655474 235.52210823 273.54577976 235.51837952 274.72982979 235.51453781 C278.99757257 235.00094497 282.3695233 233.53954165 285.55784607 230.63142776 C289.06823017 226.12310838 290.27934243 222.96549652 290.19456482 217.19002151 C289.56827413 212.60592161 286.65207879 209.7981172 283.35081482 206.81892776 C279.38338109 204.07224287 276.31508925 204.00172332 271.60136414 203.98425674 C270.95853855 203.98058006 270.31571296 203.97690337 269.65340781 203.97311527 C267.49556926 203.96208663 265.33777889 203.958236 263.17991638 203.95442581 C261.6341995 203.94816053 260.08848412 203.94151368 258.54277039 203.93451309 C253.46317086 203.91347784 248.38357104 203.90311118 243.30393982 203.89314651 C241.55479161 203.88909875 239.80564355 203.88498183 238.05649567 203.88079643 C229.83868584 203.8617459 221.620885 203.84751461 213.40305734 203.83918446 C203.9193871 203.82941227 194.43595029 203.80309272 184.9523623 203.76268357 C177.62061625 203.7325162 170.2889371 203.717715 162.95713019 203.71440345 C158.57887654 203.71205365 154.20087228 203.70310246 149.82268524 203.67794228 C145.70220749 203.65464559 141.58214308 203.6504346 137.46161652 203.66070366 C135.95196151 203.66119875 134.44228605 203.6548862 132.93269348 203.64114761 C120.32097675 203.50641492 120.32097675 203.50641492 110.53831482 210.88142776 Z M116.91331482 257.13142776 C116.91331482 261.75142776 116.91331482 266.37142776 116.91331482 271.13142776 C115.59331482 271.50267776 114.27331482 271.87392776 112.91331482 272.25642776 C103.44982442 275.4553541 95.66042112 282.81234318 90.59300232 291.35799026 C85.88864562 301.21971579 85.61786935 311.44069939 85.63865662 322.18733597 C85.63430008 323.57657009 85.62911383 324.96580182 85.62316895 326.35503006 C85.60986751 330.10108652 85.60919041 333.84704155 85.61173224 337.593117 C85.6128082 340.73385642 85.60790263 343.87457584 85.60312682 347.01531094 C85.59206183 354.43285689 85.59157696 361.85035218 85.59764099 369.26790237 C85.60367597 376.88871199 85.59137497 384.50933676 85.57007092 392.13011485 C85.55238516 398.70117779 85.54646458 405.27218227 85.54970866 411.8432681 C85.5515109 415.75542084 85.54899259 419.66744176 85.53499413 423.57957268 C85.52230646 427.26266329 85.52446166 430.94546845 85.53740501 434.6285553 C85.54085205 436.60240569 85.52967346 438.57626525 85.51783752 440.55008316 C85.60192493 455.01528941 88.42607536 467.69145394 98.32737732 478.57283401 C107.19779479 487.29031325 118.19126883 490.24640887 130.42034912 490.26514053 C132.31891159 490.27153801 132.31891159 490.27153801 134.25582886 490.27806473 C135.64076236 490.27771529 137.02569584 490.2772538 138.41062927 490.27669144 C139.88310328 490.27968677 141.3555765 490.28309015 142.82804871 490.28686905 C146.81371993 490.29567531 150.79936966 490.29804574 154.78504968 490.29868484 C157.27921981 490.29939726 159.77338454 490.30153524 162.26755333 490.30418205 C170.98045064 490.31342437 179.69333269 490.31751834 188.40623474 490.3167305 C196.50926077 490.31613004 204.61222016 490.32667857 212.71522933 490.34247416 C219.68787138 490.35557865 226.66049173 490.36091318 233.63314599 490.36027509 C237.79058344 490.36002095 241.94796162 490.36282535 246.10538673 490.37345314 C250.01818609 490.38318319 253.93087012 490.38317991 257.84367371 490.37593651 C259.27304441 490.37489673 260.70242248 490.37721714 262.13178062 490.38329697 C277.23585745 490.44334014 290.39243489 488.63555511 301.85081482 477.88142776 C309.14981289 470.02707115 313.14821095 460.30424282 313.18074036 449.55519485 C313.19353531 447.63355766 313.19353531 447.63355766 313.20658875 445.67309952 C313.20588986 444.27086245 313.20496687 442.86862549 313.20384216 441.4663887 C313.20983273 439.97583049 313.21663949 438.48527536 313.22419739 436.99472427 C313.2418125 432.95938822 313.24655091 428.92413708 313.24782896 424.88876629 C313.24925385 422.36308989 313.25352987 419.83743484 313.25882339 417.31176376 C313.27730997 408.48747775 313.28549587 399.66325203 313.28392029 390.8389473 C313.28271979 382.63474834 313.30380764 374.43081284 313.33540761 366.22668052 C313.36162789 359.16569152 313.37228516 352.10478826 313.37100947 345.043751 C313.37050145 340.83423224 313.37609509 336.62494769 313.39736557 332.41547775 C313.41684489 328.45249883 313.41680696 324.48997519 313.40233231 320.52697945 C313.40025494 319.08028555 313.40488054 317.63356243 313.41705322 316.18691826 C313.52389546 302.59912619 310.60184576 291.18683882 301.03050232 281.15877151 C294.76016023 275.36792617 288.13266415 272.1862651 279.91331482 270.13142776 C279.58331482 265.84142776 279.25331482 261.55142776 278.91331482 257.13142776 C225.45331482 257.13142776 171.99331482 257.13142776 116.91331482 257.13142776 Z"/>
-        </svg>
-      </a> -->
-      <!-- YouTube --> 
+      <!-- YouTube -->
       <a href="https://www.youtube.com/@shikayri" target="_blank" aria-label="YouTube" class="social-icon">
         <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
       </a>
     </div>
-
-
 
     <form action="https://formspree.io/f/movkbbpz" method="POST">
       <input type="text" name="name" placeholder="Your name" required>
@@ -465,8 +428,6 @@
       <button type="submit" class="btn">Send</button>
     </form>
   </section>
-  
-
 
   <footer style="background-color: var(--secondary-bg); padding: 20px 20px; text-align: center; border-top: 1px solid var(--border-color);">
     <p>&copy; 2023 Dery Putra. All rights reserved.</p>
@@ -477,12 +438,9 @@
     const translations = {
       en: {
         home: "Home",
-        about: "About",
         portfolio: "Portfolio",
         skills: "Skills",
-        resume: "Resume",
         contact: "Contact",
-        aboutMe: "About Me",
         skillsCertifications: "Skills & Certifications",
         technicalSkills: "Technical Skills",
         softSkills: "Soft Skills",
@@ -490,7 +448,6 @@
         certifications: "Certifications",
         exploreMyWork: "Explore My Work",
         getInTouch: "Get In Touch",
-        downloadResume: "Download Resume",
         sendMessage: "Send Message",
         backToTop: "Back to Top",
         yourName: "Your Name",
@@ -498,26 +455,13 @@
         yourMessage: "Your Message",
         softwareEngineer: "Software Engineer",
         buildingSecure: "Building Secure, Scalable Software",
-        aboutText: "I am a motivated student pursuing a degree in Informatics at POLITEKNIK NEGERI BATAM, skilled in HTML, CSS, Tailwind CSS, JavaScript, PHP, Laravel, and React JS. I have hands-on experience in web development, video production, audio production, and graphic design. I completed a trainee program focused on software testing and web application projects. Detail-oriented and a strong team player, I am seeking an internship in Full-Stack Web Development to further hone my skills.",
-        problemSolving: "Problem-Solving",
-        teamwork: "Teamwork",
-        managementSkills: "Management Skills",
-        creativeDesign: "Creative Design",
-        adaptability: "Adaptability",
-        languages: "Languages: Indonesian (Native), English (Fluent)",
-        microsoft365: "Microsoft 365",
-        videoProduction: "Video Production & Editing",
-        audioEditing: "Audio Editing",
-        graphicDesign: "Graphic Design",
         copyright: "&copy; 2023 Dery Putra. All rights reserved."
       },
       id: {
         home: "Beranda",
-        about: "Tentang",
+        portfolio: "Portofolio",
         skills: "Keterampilan",
-        resume: "Resume",
         contact: "Kontak",
-        aboutMe: "Tentang Saya",
         skillsCertifications: "Keterampilan & Sertifikasi",
         technicalSkills: "Keterampilan Teknis",
         softSkills: "Keterampilan Lunak",
@@ -525,7 +469,6 @@
         certifications: "Sertifikasi",
         exploreMyWork: "Jelajahi Karya Saya",
         getInTouch: "Hubungi Saya",
-        downloadResume: "Unduh Resume",
         sendMessage: "Kirim Pesan",
         backToTop: "Kembali ke Atas",
         yourName: "Nama Anda",
@@ -533,17 +476,6 @@
         yourMessage: "Pesan Anda",
         softwareEngineer: "Insinyur Perangkat Lunak",
         buildingSecure: "Membangun Perangkat Lunak Aman dan Skalabel",
-        aboutText: "Saya adalah mahasiswa yang termotivasi yang mengejar gelar di Informatika di POLITEKNIK NEGERI BATAM, terampil dalam HTML, CSS, Tailwind CSS, JavaScript, PHP, Laravel, dan React JS. Saya memiliki pengalaman langsung dalam pengembangan web, produksi video, produksi audio, dan desain grafis. Saya menyelesaikan program trainee yang fokus pada pengujian perangkat lunak dan proyek aplikasi web. Berorientasi detail dan pemain tim yang kuat, saya mencari magang di Pengembangan Web Full-Stack untuk lebih meningkatkan keterampilan saya.",
-        problemSolving: "Pemecahan Masalah",
-        teamwork: "Kerja Tim",
-        managementSkills: "Keterampilan Manajemen",
-        creativeDesign: "Desain Kreatif",
-        adaptability: "Kemampuan Adaptasi",
-        languages: "Bahasa: Indonesia (Asli), Inggris (Lancar)",
-        microsoft365: "Microsoft 365",
-        videoProduction: "Produksi & Editing Video",
-        audioEditing: "Editing Audio",
-        graphicDesign: "Desain Grafis",
         copyright: "&copy; 2023 Dery Putra. Hak cipta dilindungi."
       }
     };
@@ -557,8 +489,8 @@
       body.setAttribute('data-theme', newTheme);
       if (video) {
         const newSrc = newTheme === 'dark'
-          ? 'PortfolioWebRelated-ezgif.com-gif-to-webm-converter.webm'
-          : 'PortfolioWebRelatedWhite-ezgif.com-gif-to-webm-converter.webm';
+    ? '{{ asset('videos/PortfolioWebRelated-ezgif.com-gif-to-webm-converter.webm') }}'
+    : '{{ asset('videos/PortfolioWebRelatedWhite-ezgif.com-gif-to-webm-converter.webm') }}';
         video.querySelector('source').setAttribute('src', newSrc);
         video.load();
         video.play(); // Play the video when theme is switched
@@ -577,54 +509,12 @@
       updateLanguage(newLang);
     }
 
-    function typewriter(element, text, speed = 100) {
-      element.textContent = '';
-      let i = 0;
-      const timer = setInterval(() => {
-        if (i < text.length) {
-          element.textContent += text.charAt(i);
-          i++;
-        } else {
-          clearInterval(timer);
-        }
-      }, speed);
-    }
-
-    function typeSection(id) {
-      const t = translations[document.body.getAttribute('data-lang') || 'en'];
-      if (id === 'about') {
-        const aboutH2 = document.querySelector('#about h2');
-        const aboutP = document.querySelector('#about p');
-        aboutH2.textContent = '';
-        aboutP.textContent = '';
-        typewriter(aboutH2, t.aboutMe);
-        typewriter(aboutP, t.aboutText);
-      } else if (id === 'skills') {
-        const softSkillsLis = document.querySelectorAll('.soft-skills ul:first-of-type li');
-        const otherSkillsLis = document.querySelectorAll('.soft-skills ul:last-of-type li');
-        softSkillsLis.forEach(li => li.textContent = '');
-        otherSkillsLis.forEach(li => li.textContent = '');
-        if (softSkillsLis[0]) typewriter(softSkillsLis[0], t.problemSolving);
-        if (softSkillsLis[1]) typewriter(softSkillsLis[1], t.teamwork);
-        if (softSkillsLis[2]) typewriter(softSkillsLis[2], t.managementSkills);
-        if (softSkillsLis[3]) typewriter(softSkillsLis[3], t.creativeDesign);
-        if (softSkillsLis[4]) typewriter(softSkillsLis[4], t.adaptability);
-        if (softSkillsLis[5]) typewriter(softSkillsLis[5], t.languages);
-        if (otherSkillsLis[0]) typewriter(otherSkillsLis[0], t.microsoft365);
-        if (otherSkillsLis[1]) typewriter(otherSkillsLis[1], t.videoProduction);
-        if (otherSkillsLis[2]) typewriter(otherSkillsLis[2], t.audioEditing);
-        if (otherSkillsLis[3]) typewriter(otherSkillsLis[3], t.graphicDesign);
-      }
-    }
-
     function updateLanguage(lang) {
       const t = translations[lang];
       // Short texts: instant
       document.querySelector('a[href="#hero"]').textContent = t.home;
-      document.querySelector('a[href="#about"]').textContent = t.about;
       document.querySelector('a[href="#portfolio"]').textContent = t.portfolio;
       document.querySelector('a[href="#skills"]').textContent = t.skills;
-      document.querySelector('a[href="#resume"]').textContent = t.resume;
       document.querySelector('a[href="#contact"]').textContent = t.contact;
       document.querySelector('#skills h2').textContent = t.skillsCertifications;
       document.querySelectorAll('#skills h3')[0].textContent = t.technicalSkills;
@@ -633,7 +523,6 @@
       document.querySelectorAll('#skills h3')[3].textContent = t.certifications;
       document.querySelector('a[href="#skills"]').textContent = t.exploreMyWork;
       document.querySelector('a[href="#contact"]').textContent = t.getInTouch;
-      document.querySelector('#resume a').textContent = t.downloadResume;
       document.querySelector('#contact h2').textContent = t.contact;
       document.querySelector('#contact form button[type="submit"]').textContent = t.sendMessage;
       document.querySelector('#contact form input[name="name"]').placeholder = t.yourName;
@@ -646,20 +535,11 @@
       heroPs[1].textContent = t.buildingSecure;
       // Footer
       document.querySelector('footer p').innerHTML = t.copyright;
-
-      // Reset typed sections
-      document.querySelector('#about').setAttribute('data-typed', 'false');
-      document.querySelector('#skills').setAttribute('data-typed', 'false');
-
-      // Trigger typing if visible
-      checkVisibility();
     }
 
     function toggleMenu() {
       document.getElementById('nav-menu').classList.toggle('show');
     }
-
-
 
     function showNotification(message, isError = false) {
       const notification = document.createElement('div');
@@ -712,20 +592,6 @@
 
     observer.observe(video);
 
-    // Optional: handle theme switch dynamically
-    const themeSwitcher = document.querySelector('#theme-toggle'); // Example button
-    if (themeSwitcher) {
-      themeSwitcher.addEventListener('click', () => {
-        const isDark = document.documentElement.classList.toggle('dark');
-        const newSrc = isDark
-          ? 'PortfolioWebRelated-dark.webm'
-          : 'PortfolioWebRelated-light.webm';
-        video.querySelector('source').setAttribute('src', newSrc);
-        video.load();
-        hasPlayed = false; // allow re-play once theme changes
-      });
-    }
-
     document.addEventListener('DOMContentLoaded', () => {
       // Scroll to top on page refresh
       window.scrollTo(0, 0);
@@ -733,21 +599,6 @@
       const savedLang = localStorage.getItem('lang') || 'en';
       document.body.setAttribute('data-lang', savedLang);
       updateLanguage(savedLang);
-
-      const elements = document.querySelectorAll('.animate');
-      const checkVisibility = () => {
-        elements.forEach(el => {
-          const rect = el.getBoundingClientRect();
-          if (rect.top < window.innerHeight && rect.bottom > 0) {
-            el.classList.add('visible');
-            if (el.hasAttribute('data-typed') && el.getAttribute('data-typed') === 'false') {
-              el.setAttribute('data-typed', 'true');
-              typeSection(el.id);
-            }
-          }
-        });
-      };
-      window.addEventListener('scroll', checkVisibility);
 
       // Prevent right-click on logo to disable download via context menu
       const logo = document.querySelector('.logo');
@@ -758,7 +609,7 @@
         logo.oncontextmenu = () => false;
       }
 
-
-
     });
   </script>
+</body>
+</html>

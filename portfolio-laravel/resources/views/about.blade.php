@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Me - Dery Putra</title>
   <meta name="description" content="Learn more about Dery Putra, his background, interests, and personal life.">
-  <link rel="icon" type="image/svg+xml" href="Dery_Putra_Favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="{{ asset('svgs/Dery_Putra_Favicon.svg') }}">
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BD1SNDT1EN"></script>
@@ -18,9 +18,6 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-
-  <!-- Chart.js for Radar Chart -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <style>
     /* Variables for Theme */
@@ -180,14 +177,14 @@
 <body data-theme="light">
 
   <header>
-    <img src="Dery_Putra_Favicon_Square _Format_NBG.png" alt="Dery Putra Logo" class="logo" oncontextmenu="return false;">
+    <img src="{{ asset('images/Dery_Putra_Favicon_Square _Format_NBG.png') }}" alt="Dery Putra Logo" class="logo" oncontextmenu="return false;">
     <nav>
       <ul id="nav-menu">
-        <li><a href="index.html">Home</a></li>
+        <li><a href="{{ route('home') }}">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#personal">Personal</a></li>
         <li><a href="#blog">Blog</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="{{ route('home') }}#contact">Contact</a></li>
       </ul>
       <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     </nav>
@@ -241,13 +238,23 @@
 
   <section id="blog" class="animate" style="text-align:center;">
     <h2>Blog</h2>
-    <p>Coming soon! I plan to share my thoughts on technology, development tips, and personal experiences.</p>
+    <p>Sharing my thoughts on technology, development tips, and personal experiences.</p>
     <div class="grid">
-      <div class="card">
-        <h3>Latest Post</h3>
-        <p>Stay tuned for my first blog post!</p>
-      </div>
+      @forelse($blogs as $blog)
+        <div class="card">
+          <h3>{{ $blog->title }}</h3>
+          <p>{{ Str::limit($blog->content, 150) }}</p>
+          <small>Date: {{ $blog->created_at->format('Y-m-d') }}</small>
+          <br>
+          <a href="{{ route('blogs.show', $blog) }}" class="btn">Read More</a>
+        </div>
+      @empty
+        <p>No blog posts available yet.</p>
+      @endforelse
     </div>
+    <p style="margin-top: 20px;">
+      <a href="{{ route('blogs.index') }}" class="btn">View All Blogs</a>
+    </p>
   </section>
 
   <footer style="background-color: var(--secondary-bg); padding: 20px 20px; text-align: center; border-top: 1px solid var(--border-color);">
