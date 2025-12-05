@@ -1,0 +1,512 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me - Dery Putra</title>
+  <meta name="description" content="Learn more about Dery Putra, his background, interests, and personal life.">
+  <link rel="icon" type="image/svg+xml" href="/Dery_Putra_Favicon.svg">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BD1SNDT1EN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BD1SNDT1EN');
+  </script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Variables for Theme */
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #333333;
+      --accent-color: #1e3a8a;
+      --secondary-bg: #f4f4f4;
+      --border-color: #e0e0e0;
+    }
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #ffffff;
+      --accent-color: lightblue;
+      --secondary-bg: #1e1e1e;
+      --border-color: #333333;
+    }
+
+    /* Global */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Nunito', sans-serif;
+      line-height: 1.7;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+      transition: background-color 0.3s, color 0.3s;
+    }
+    a { color: var(--accent-color); text-decoration: none; }
+    a:hover { text-decoration: underline; color: #0f2a5e; }
+    section { padding: 60px 20px; max-width: 1200px; margin: 0 auto; }
+
+    h1, h2, h3 {
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 20px;
+    }
+    h1 { font-size: 2.7rem; letter-spacing: 1px; }
+    h2 { font-size: 2rem; color: var(--accent-color); }
+    h3 { font-size: 1.5rem; }
+
+    p { margin-bottom: 15px; font-size: 1.05rem; }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: var(--accent-color);
+      color: white;
+      border-radius: 5px;
+      transition: background-color 0.3s, transform 0.2s;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .btn:hover {
+      background-color: #0f2a5e;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: var(--bg-color);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 1000;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+    }
+    .logo { width: 90px; height: 40px; flex: 0 0 auto; }
+    nav { flex: 1; display: flex; justify-content: center; }
+    nav ul { list-style: none; display: flex; }
+    nav ul li { margin: 0 15px; }
+    nav ul li a { font-weight: 700; font-family: 'Poppins', sans-serif; }
+    .menu-toggle { display: none; cursor: pointer; }
+    .theme-toggle, .lang-toggle {
+      cursor: pointer;
+      font-size: 1.5rem;
+      position: relative;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+    }
+    .theme-icon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: opacity 0.5s ease;
+    }
+    .theme-toggle.animating .theme-icon { animation: warp 0.5s ease; }
+    .sun { opacity: 1; }
+    .moon { opacity: 0; }
+        [data-theme="dark"] .sun { opacity: 0; }
+        [data-theme="dark"] .moon { opacity: 1; }
+    @keyframes warp {
+      0% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(0.5) rotate(180deg); }
+      100% { transform: scale(1) rotate(360deg); }
+    }
+
+    .lang-icon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: opacity 0.5s ease;
+      font-weight: bold;
+    }
+    .en { opacity: 1; }
+    .id { opacity: 0; }
+    [data-lang="id"] .en { opacity: 0; }
+    [data-lang="id"] .id { opacity: 1; }
+
+    /* Grid / Cards */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .card {
+      background-color: var(--secondary-bg);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .card:hover { transform: translateY(-5px); }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .animate.visible { animation: fadeIn 1s ease-out; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-color);
+      }
+      nav ul.show { display: flex; }
+      .menu-toggle { display: block; }
+    }
+  </style>
+</head>
+<body data-theme="light">
+
+  <header>
+    <img src="/Dery_Putra_Favicon_Square _Format_NBG.png" alt="Dery Putra Logo" class="logo" oncontextmenu="return false;">
+    <nav>
+      <ul id="nav-menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#personal">Personal</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    </nav>
+    <div class="lang-toggle" onclick="toggleLanguage()">
+      <span class="lang-icon en">EN</span>
+      <span class="lang-icon id">ID</span>
+    </div>
+    <div class="theme-toggle" onclick="toggleTheme()">
+      <span class="theme-icon sun">🌞</span>
+      <span class="theme-icon moon">🌙</span>
+    </div>
+  </header>
+  <br>
+  <section id="about" class="animate" style="text-align:center;">
+    <h2>About Me</h2>
+    <p>I am a motivated student pursuing a degree in Informatics at POLITEKNIK NEGERI BATAM, skilled in HTML, CSS, Tailwind CSS, JavaScript, PHP, Laravel, and React JS. I have hands-on experience in web development, video production, audio production, and graphic design. I completed a trainee program focused on software testing and web application projects. Detail-oriented and a strong team player, I am seeking an internship in Full-Stack Web Development to further hone my skills.</p>
+  </section>
+
+  <section id="personal" class="animate" style="text-align:center;">
+    <h2>Personal Life</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Hobbies</h3>
+        <ul>
+          <li>Gaming</li>
+          <li>Reading tech blogs</li>
+          <li>Photography</li>
+          <li>Music</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Interests</h3>
+        <ul>
+          <li>Artificial Intelligence</li>
+          <li>Cybersecurity</li>
+          <li>Open Source Projects</li>
+          <li>UI/UX Design</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Personal Projects</h3>
+        <ul>
+          <li>Personal website development</li>
+          <li>Video editing tutorials</li>
+          <li>Graphic design portfolios</li>
+          <li>Learning new programming languages</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="blog" class="animate" style="text-align:center;">
+    <h2>Blog</h2>
+    <p>Sharing my thoughts on technology, development tips, and personal experiences.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Getting Started with Web Development</h3>
+        <p>As a beginner, the world of web development can seem overwhelming. Here's my journey from HTML basics to building full-stack applications.</p>
+        <small>Date: 2023-10-01</small>
+      </div>
+      <div class="card">
+        <h3>Why I Love Laravel</h3>
+        <p>Laravel has been a game-changer for my PHP projects. Its elegant syntax and powerful features make development enjoyable and efficient.</p>
+        <small>Date: 2023-09-15</small>
+      </div>
+      <div class="card">
+        <h3>Balancing Code and Life</h3>
+        <p>Programming is my passion, but maintaining work-life balance is crucial. Here are some tips I've learned along the way.</p>
+        <small>Date: 2023-08-20</small>
+      </div>
+    </div>
+    <p style="margin-top: 20px; font-size: 0.9rem; color: var(--text-color);">To add more posts, copy a card div and update the title, content, and date.</p>
+  </section>
+
+  <footer style="background-color: var(--secondary-bg); padding: 20px 20px; text-align: center; border-top: 1px solid var(--border-color);">
+    <p>&copy; 2023 Dery Putra. All rights reserved.</p>
+    <p><a href="#about" style="color: var(--accent-color); text-decoration: none;">Back to Top</a></p>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        home: "Home",
+        about: "About",
+        portfolio: "Portfolio",
+        skills: "Skills",
+        resume: "Resume",
+        contact: "Contact",
+        aboutMe: "About Me",
+        skillsCertifications: "Skills & Certifications",
+        technicalSkills: "Technical Skills",
+        softSkills: "Soft Skills",
+        otherSkills: "Other Skills",
+        certifications: "Certifications",
+        exploreMyWork: "Explore My Work",
+        getInTouch: "Get In Touch",
+        downloadResume: "Download Resume",
+        sendMessage: "Send Message",
+        backToTop: "Back to Top",
+        yourName: "Your Name",
+        yourEmail: "Your Email",
+        yourMessage: "Your Message",
+        softwareEngineer: "Software Engineer",
+        buildingSecure: "Building Secure, Scalable Software",
+        aboutText: "I am a motivated student pursuing a degree in Informatics at POLITEKNIK NEGERI BATAM, skilled in HTML, CSS, Tailwind CSS, JavaScript, PHP, Laravel, and React JS. I have hands-on experience in web development, video production, audio production, and graphic design. I completed a trainee program focused on software testing and web application projects. Detail-oriented and a strong team player, I am seeking an internship in Full-Stack Web Development to further hone my skills.",
+        problemSolving: "Problem-Solving",
+        teamwork: "Teamwork",
+        managementSkills: "Management Skills",
+        creativeDesign: "Creative Design",
+        adaptability: "Adaptability",
+        languages: "Languages: Indonesian (Native), English (Fluent)",
+        microsoft365: "Microsoft 365",
+        videoProduction: "Video Production & Editing",
+        audioEditing: "Audio Editing",
+        graphicDesign: "Graphic Design",
+        copyright: "&copy; 2023 Dery Putra. All rights reserved.",
+        personalLife: "Personal Life",
+        hobbies: "Hobbies",
+        interests: "Interests",
+        personalProjects: "Personal Projects",
+        gaming: "Gaming",
+        readingTechBlogs: "Reading tech blogs",
+        photography: "Photography",
+        music: "Music",
+        artificialIntelligence: "Artificial Intelligence",
+        cybersecurity: "Cybersecurity",
+        openSourceProjects: "Open Source Projects",
+        uiUxDesign: "UI/UX Design",
+        personalWebsiteDevelopment: "Personal website development",
+        videoEditingTutorials: "Video editing tutorials",
+        graphicDesignPortfolios: "Graphic design portfolios",
+        learningNewProgrammingLanguages: "Learning new programming languages",
+        blog: "Blog",
+        blogDescription: "Sharing my thoughts on technology, development tips, and personal experiences.",
+        gettingStartedWithWebDevelopment: "Getting Started with Web Development",
+        gettingStartedText: "As a beginner, the world of web development can seem overwhelming. Here's my journey from HTML basics to building full-stack applications.",
+        whyILoveLaravel: "Why I Love Laravel",
+        laravelText: "Laravel has been a game-changer for my PHP projects. Its elegant syntax and powerful features make development enjoyable and efficient.",
+        balancingCodeAndLife: "Balancing Code and Life",
+        balancingText: "Programming is my passion, but maintaining work-life balance is crucial. Here are some tips I've learned along the way.",
+        addMorePosts: "To add more posts, copy a card div and update the title, content, and date."
+      },
+      id: {
+        home: "Beranda",
+        about: "Tentang",
+        portfolio: "Portofolio",
+        skills: "Keterampilan",
+        resume: "Resume",
+        contact: "Kontak",
+        aboutMe: "Tentang Saya",
+        skillsCertifications: "Keterampilan & Sertifikasi",
+        technicalSkills: "Keterampilan Teknis",
+        softSkills: "Keterampilan Lunak",
+        otherSkills: "Keterampilan Lain",
+        certifications: "Sertifikasi",
+        exploreMyWork: "Jelajahi Karya Saya",
+        getInTouch: "Hubungi Saya",
+        downloadResume: "Unduh Resume",
+        sendMessage: "Kirim Pesan",
+        backToTop: "Kembali ke Atas",
+        yourName: "Nama Anda",
+        yourEmail: "Email Anda",
+        yourMessage: "Pesan Anda",
+        softwareEngineer: "Insinyur Perangkat Lunak",
+        buildingSecure: "Membangun Perangkat Lunak Aman dan Skalabel",
+        aboutText: "Saya adalah mahasiswa yang termotivasi yang mengejar gelar di Informatika di POLITEKNIK NEGERI BATAM, terampil dalam HTML, CSS, Tailwind CSS, JavaScript, PHP, Laravel, dan React JS. Saya memiliki pengalaman langsung dalam pengembangan web, produksi video, produksi audio, dan desain grafis. Saya menyelesaikan program trainee yang fokus pada pengujian perangkat lunak dan proyek aplikasi web. Berorientasi detail dan pemain tim yang kuat, saya mencari magang di Pengembangan Web Full-Stack untuk lebih meningkatkan keterampilan saya.",
+        problemSolving: "Pemecahan Masalah",
+        teamwork: "Kerja Tim",
+        managementSkills: "Keterampilan Manajemen",
+        creativeDesign: "Desain Kreatif",
+        adaptability: "Kemampuan Adaptasi",
+        languages: "Bahasa: Indonesia (Asli), Inggris (Lancar)",
+        microsoft365: "Microsoft 365",
+        videoProduction: "Produksi & Editing Video",
+        audioEditing: "Editing Audio",
+        graphicDesign: "Desain Grafis",
+        copyright: "&copy; 2023 Dery Putra. Hak cipta dilindungi.",
+        personalLife: "Kehidupan Pribadi",
+        hobbies: "Hobi",
+        interests: "Minat",
+        personalProjects: "Proyek Pribadi",
+        gaming: "Bermain Game",
+        readingTechBlogs: "Membaca blog teknologi",
+        photography: "Fotografi",
+        music: "Musik",
+        artificialIntelligence: "Kecerdasan Buatan",
+        cybersecurity: "Keamanan Siber",
+        openSourceProjects: "Proyek Open Source",
+        uiUxDesign: "Desain UI/UX",
+        personalWebsiteDevelopment: "Pengembangan situs web pribadi",
+        videoEditingTutorials: "Tutorial editing video",
+        graphicDesignPortfolios: "Portofolio desain grafis",
+        learningNewProgrammingLanguages: "Belajar bahasa pemrograman baru",
+        blog: "Blog",
+        blogDescription: "Berbagi pemikiran saya tentang teknologi, tips pengembangan, dan pengalaman pribadi.",
+        gettingStartedWithWebDevelopment: "Memulai Pengembangan Web",
+        gettingStartedText: "Sebagai pemula, dunia pengembangan web bisa terasa menakutkan. Berikut adalah perjalanan saya dari dasar HTML hingga membangun aplikasi full-stack.",
+        whyILoveLaravel: "Mengapa Saya Suka Laravel",
+        laravelText: "Laravel telah mengubah permainan untuk proyek PHP saya. Sintaks yang elegan dan fitur yang kuat membuat pengembangan menyenangkan dan efisien.",
+        balancingCodeAndLife: "Menyeimbangkan Kode dan Kehidupan",
+        balancingText: "Pemrograman adalah passion saya, tetapi menjaga keseimbangan kerja-hidup sangat penting. Berikut adalah beberapa tips yang saya pelajari sepanjang jalan.",
+        addMorePosts: "Untuk menambah lebih banyak postingan, salin div kartu dan perbarui judul, konten, dan tanggal."
+      }
+    };
+
+    function toggleTheme() {
+      const body = document.body;
+      const themeToggle = document.querySelector('.theme-toggle');
+      const isDark = body.getAttribute('data-theme') === 'dark';
+      const newTheme = isDark ? 'light' : 'dark';
+      body.setAttribute('data-theme', newTheme);
+      themeToggle.classList.add('animating');
+      setTimeout(() => themeToggle.classList.remove('animating'), 500);
+    }
+
+    function toggleLanguage() {
+      const body = document.body;
+      const currentLang = body.getAttribute('data-lang') || 'en';
+      const newLang = currentLang === 'en' ? 'id' : 'en';
+      body.setAttribute('data-lang', newLang);
+      localStorage.setItem('lang', newLang);
+      updateLanguage(newLang);
+    }
+
+    function updateLanguage(lang) {
+      const t = translations[lang];
+      // Update navigation
+      document.querySelector('a[href="/"]').textContent = t.home;
+      document.querySelector('a[href="#about"]').textContent = t.about;
+      document.querySelector('a[href="#personal"]').textContent = t.personalLife;
+      document.querySelector('a[href="#blog"]').textContent = t.blog;
+      document.querySelector('a[href="/#contact"]').textContent = t.contact;
+
+      // Update sections
+      document.querySelector('#about h2').textContent = t.aboutMe;
+      document.querySelector('#about p').textContent = t.aboutText;
+      document.querySelector('#personal h2').textContent = t.personalLife;
+      document.querySelector('#blog h2').textContent = t.blog;
+      document.querySelector('#blog p').textContent = t.blogDescription;
+
+      // Update personal section
+      const personalCards = document.querySelectorAll('#personal .card');
+      if (personalCards[0]) personalCards[0].querySelector('h3').textContent = t.hobbies;
+      if (personalCards[1]) personalCards[1].querySelector('h3').textContent = t.interests;
+      if (personalCards[2]) personalCards[2].querySelector('h3').textContent = t.personalProjects;
+
+      // Update hobbies
+      const hobbiesLis = document.querySelectorAll('#personal .card:nth-child(1) ul li');
+      if (hobbiesLis[0]) hobbiesLis[0].textContent = t.gaming;
+      if (hobbiesLis[1]) hobbiesLis[1].textContent = t.readingTechBlogs;
+      if (hobbiesLis[2]) hobbiesLis[2].textContent = t.photography;
+      if (hobbiesLis[3]) hobbiesLis[3].textContent = t.music;
+
+      // Update interests
+      const interestsLis = document.querySelectorAll('#personal .card:nth-child(2) ul li');
+      if (interestsLis[0]) interestsLis[0].textContent = t.artificialIntelligence;
+      if (interestsLis[1]) interestsLis[1].textContent = t.cybersecurity;
+      if (interestsLis[2]) interestsLis[2].textContent = t.openSourceProjects;
+      if (interestsLis[3]) interestsLis[3].textContent = t.uiUxDesign;
+
+      // Update personal projects
+      const projectsLis = document.querySelectorAll('#personal .card:nth-child(3) ul li');
+      if (projectsLis[0]) projectsLis[0].textContent = t.personalWebsiteDevelopment;
+      if (projectsLis[1]) projectsLis[1].textContent = t.videoEditingTutorials;
+      if (projectsLis[2]) projectsLis[2].textContent = t.graphicDesignPortfolios;
+      if (projectsLis[3]) projectsLis[3].textContent = t.learningNewProgrammingLanguages;
+
+      // Update blog posts
+      const blogCards = document.querySelectorAll('#blog .card');
+      if (blogCards[0]) {
+        blogCards[0].querySelector('h3').textContent = t.gettingStartedWithWebDevelopment;
+        blogCards[0].querySelector('p').textContent = t.gettingStartedText;
+      }
+      if (blogCards[1]) {
+        blogCards[1].querySelector('h3').textContent = t.whyILoveLaravel;
+        blogCards[1].querySelector('p').textContent = t.laravelText;
+      }
+      if (blogCards[2]) {
+        blogCards[2].querySelector('h3').textContent = t.balancingCodeAndLife;
+        blogCards[2].querySelector('p').textContent = t.balancingText;
+      }
+
+      // Update footer
+      document.querySelector('footer p').innerHTML = t.copyright;
+      document.querySelector('footer a').textContent = t.backToTop;
+    }
+
+    function toggleMenu() {
+      document.getElementById('nav-menu').classList.toggle('show');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Scroll to top on page refresh
+      window.scrollTo(0, 0);
+
+      const savedLang = localStorage.getItem('lang') || 'en';
+      document.body.setAttribute('data-lang', savedLang);
+      updateLanguage(savedLang);
+
+      const elements = document.querySelectorAll('.animate');
+      const checkVisibility = () => {
+        elements.forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            el.classList.add('visible');
+          }
+        });
+      };
+      window.addEventListener('scroll', checkVisibility);
+
+      // Prevent right-click on logo to disable download via context menu
+      const logo = document.querySelector('.logo');
+      if (logo) {
+        logo.addEventListener('contextmenu', (e) => {
+          e.preventDefault();
+        });
+        logo.oncontextmenu = () => false;
+      }
+    });
+  </script>
+</body>
+</html>
