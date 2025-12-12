@@ -479,6 +479,7 @@
       const isDark = body.getAttribute('data-theme') === 'dark';
       const newTheme = isDark ? 'light' : 'dark';
       body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
       if (video) {
         const newSrc = newTheme === 'dark'
           ? 'PortfolioWebRelated-ezgif.com-gif-to-webm-converter.webm'

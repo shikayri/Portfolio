@@ -183,11 +183,10 @@
     <img src="/Dery_Putra_Favicon_Square _Format_NBG.png" alt="Dery Putra Logo" class="logo" oncontextmenu="return false;">
     <nav>
       <ul id="nav-menu">
-        <li><a href="/">Home</a></li>
-        <li><a href="#about">About</a></li>
+        <li><a href="/Portfolio/">Home</a></li>
         <li><a href="#personal">Personal</a></li>
         <li><a href="#blog">Blog</a></li>
-        <li><a href="/#contact">Contact</a></li>
+        <li><a href="/Portfolio/#contact">Contact</a></li>
       </ul>
       <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     </nav>
@@ -267,7 +266,7 @@
     <p><a href="#about" style="color: var(--accent-color); text-decoration: none;">Back to Top</a></p>
   </footer>
 
-  <script>
+  <script client:load>
     const translations = {
       en: {
         home: "Home",
@@ -399,6 +398,7 @@
       const isDark = body.getAttribute('data-theme') === 'dark';
       const newTheme = isDark ? 'light' : 'dark';
       body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
       themeToggle.classList.add('animating');
       setTimeout(() => themeToggle.classList.remove('animating'), 500);
     }
@@ -415,11 +415,11 @@
     function updateLanguage(lang) {
       const t = translations[lang];
       // Update navigation
-      document.querySelector('a[href="/"]').textContent = t.home;
+      document.querySelector('a[href="/Portfolio/"]').textContent = t.home;
       document.querySelector('a[href="#about"]').textContent = t.about;
       document.querySelector('a[href="#personal"]').textContent = t.personalLife;
       document.querySelector('a[href="#blog"]').textContent = t.blog;
-      document.querySelector('a[href="/#contact"]').textContent = t.contact;
+      document.querySelector('a[href="/Portfolio/#contact"]').textContent = t.contact;
 
       // Update sections
       document.querySelector('#about h2').textContent = t.aboutMe;
@@ -482,6 +482,9 @@
     document.addEventListener('DOMContentLoaded', () => {
       // Scroll to top on page refresh
       window.scrollTo(0, 0);
+
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.body.setAttribute('data-theme', savedTheme);
 
       const savedLang = localStorage.getItem('lang') || 'en';
       document.body.setAttribute('data-lang', savedLang);
