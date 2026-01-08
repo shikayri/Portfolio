@@ -1,18 +1,12 @@
-# TODO: Implement Astro i18n Plugin for Multilingual Support
-
-## Plan Overview
-Switch from custom client-side language toggle to Astro i18n plugin for proper multilingual support with static hosting on GitHub Pages.
+# TODO: Convert Astro Portfolio to Plain HTML
 
 ## Steps
-- [ ] Configure Astro i18n in astro.config.mjs
-- [ ] Create translation JSON files (en.json and id.json)
-- [ ] Update src/pages/index.astro to use i18n functions
-- [ ] Modify existing lang-toggle button to navigate between routes
-- [ ] Remove custom client-side script and translations
-- [ ] Test build and verify static output
-- [ ] Confirm GitHub Pages compatibility
-
-## Notes
-- Keep the existing lang-toggle button design and functionality
-- Ensure translations match current content
-- Maintain single codebase with automatic route generation
+- [x] Update package.json: remove Astro dependencies and scripts
+- [x] Create index.html: convert from index.astro, inline LanguageToggle component
+- [x] Create about.html: convert from about.astro, inline LanguageToggle component
+- [x] Create app.js: handle theme and language toggles with localStorage
+- [x] Update .github/workflows/deploy.yml: remove build steps, upload root directory
+- [x] Remove Astro files: astro.config.mjs, src/ folder, old TODO.md
+- [x] Add README.md: explain local testing, deployment, toggle logic
+- [x] Test locally: open HTML files, check toggles, form, assets
+- [ ] Deploy to GitHub Pages
