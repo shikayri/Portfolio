@@ -102,12 +102,21 @@ import LanguageToggle from '../components/LanguageToggle.astro';
     nav ul li { margin: 0 15px; }
     nav ul li a { font-weight: 700; font-family: 'Poppins', sans-serif; }
     /* Portfolio Image Styles */
-    .portfolio-image {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
+.portfolio-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: none;
+}
+
+[data-theme="light"] #portfolio-video-light {
+  display: block;
+}
+
+[data-theme="dark"] #portfolio-video-dark {
+  display: block;
+}
     .menu-toggle { display: none; cursor: pointer; }
     .theme-toggle, .lang-toggle {
       cursor: pointer;
@@ -351,7 +360,6 @@ import LanguageToggle from '../components/LanguageToggle.astro';
     <h1 data-en="Dery Putra" data-id="Dery Putra">Dery Putra</h1>
       <p data-en="Software Engineer" data-id="Insinyur Perangkat Lunak">Software Engineer</p>
       <p data-en="Building secure and reliable digital solutions." data-id="Membangun solusi digital yang aman dan andal.">Building secure and reliable digital solutions.</p>
-      <a href="#skills" class="btn" data-en="Explore My Work" data-id="Jelajahi Karya Saya">Explore My Work</a>
       <br>
       <a href="#contact" class="btn" data-en="Get In Touch" data-id="Hubungi Saya">Get In Touch</a>
     </div>
@@ -366,9 +374,11 @@ import LanguageToggle from '../components/LanguageToggle.astro';
 <section id="portfolio" class="animate" style="text-align:center;">
   <h2>Portfolio</h2>
   <div class="portfolio-container">
-    <video id="portfolio-video" class="portfolio-image" muted playsinline>
+    <video id="portfolio-video-light" class="portfolio-image" muted playsinline preload="metadata">
       <source src="PortfolioWebRelatedWhite-ezgif.com-gif-to-webm-converter.webm" type="video/webm">
-      <source src="PortfolioWebRelated-ezgif.com-gif-to-webm-converter.gif" type="image/gif">
+    </video>
+    <video id="portfolio-video-dark" class="portfolio-image" muted playsinline preload="metadata">
+      <source src="PortfolioWebRelated-ezgif.com-gif-to-webm-converter.webm" type="video/webm">
     </video>
   </div>
 </section>
@@ -478,20 +488,10 @@ import LanguageToggle from '../components/LanguageToggle.astro';
     function toggleTheme() {
       const body = document.body;
       const themeToggle = document.querySelector('.theme-toggle');
-      const video = document.getElementById('portfolio-video');
       const isDark = body.getAttribute('data-theme') === 'dark';
       const newTheme = isDark ? 'light' : 'dark';
       body.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
-      if (video) {
-        const newSrc = newTheme === 'dark'
-          ? 'PortfolioWebRelated-ezgif.com-gif-to-webm-converter.webm'
-          : 'PortfolioWebRelatedWhite-ezgif.com-gif-to-webm-converter.webm';
-        video.querySelector('source').setAttribute('src', newSrc);
-        video.load();
-        video.play(); // Play the video when theme is switched
-        hasPlayed = true; // Mark as played since it's now playing
-      }
       themeToggle.classList.add('animating');
       setTimeout(() => themeToggle.classList.remove('animating'), 500);
     }
@@ -550,13 +550,16 @@ import LanguageToggle from '../components/LanguageToggle.astro';
       });
     });
 
-    const video = document.getElementById('portfolio-video');
-    let hasPlayed = false;
+    const lightVideo = document.getElementById('portfolio-video-light');
+    const darkVideo = document.getElementById('portfolio-video-dark');
 
     // Function to handle play/pause based on visibility
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
+        const video = entry.target;
+        if (getComputedStyle(video).display === 'none') return;
         if (entry.isIntersecting) {
+          video.currentTime = 0;
           video.play();
         } else {
           video.pause();
@@ -564,21 +567,16 @@ import LanguageToggle from '../components/LanguageToggle.astro';
       });
     }, { threshold: 0.6 }); // 60% of video must be visible
 
-    observer.observe(video);
+    observer.observe(lightVideo);
+    observer.observe(darkVideo);
 
-    // Optional: handle theme switch dynamically
-    const themeSwitcher = document.querySelector('#theme-toggle'); // Example button
-    if (themeSwitcher) {
-      themeSwitcher.addEventListener('click', () => {
-        const isDark = document.documentElement.classList.toggle('dark');
-        const newSrc = isDark
-          ? 'PortfolioWebRelated-dark.webm'
-          : 'PortfolioWebRelated-light.webm';
-        video.querySelector('source').setAttribute('src', newSrc);
-        video.load();
-        hasPlayed = false; // allow re-play once theme changes
-      });
-    }
+    // Pause video when it ends
+    lightVideo.addEventListener('ended', () => {
+      lightVideo.pause();
+    });
+    darkVideo.addEventListener('ended', () => {
+      darkVideo.pause();
+    });
 
     window.toggleTheme = toggleTheme;
     window.toggleLanguage = toggleLanguage;
