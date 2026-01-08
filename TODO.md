@@ -10,3 +10,4 @@
 - [x] Add README.md: explain local testing, deployment, toggle logic
 - [x] Test locally: open HTML files, check toggles, form, assets
 - [x] Deploy to GitHub Pages
+- [x] Fix navigation links for separate pages
