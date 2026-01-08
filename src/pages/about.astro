@@ -178,7 +178,7 @@ import LanguageToggle from '../components/LanguageToggle.astro';
     }
   </style>
 </head>
-<body data-theme="light">
+<body>
 
   <header>
     <img src="/Dery_Putra_Favicon_Square _Format_NBG.png" alt="Dery Putra Logo" class="logo" oncontextmenu="return false;">
@@ -279,6 +279,10 @@ import LanguageToggle from '../components/LanguageToggle.astro';
     function toggleMenu() {
       document.getElementById('nav-menu').classList.toggle('show');
     }
+
+    window.toggleTheme = toggleTheme;
+    window.toggleLanguage = toggleLanguage;
+    window.toggleMenu = toggleMenu;
 
     document.addEventListener('DOMContentLoaded', () => {
       // Scroll to top on page refresh

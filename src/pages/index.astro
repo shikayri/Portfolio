@@ -580,9 +580,17 @@ import LanguageToggle from '../components/LanguageToggle.astro';
       });
     }
 
+    window.toggleTheme = toggleTheme;
+    window.toggleLanguage = toggleLanguage;
+    window.toggleMenu = toggleMenu;
+
     document.addEventListener('DOMContentLoaded', () => {
       // Scroll to top on page refresh
       window.scrollTo(0, 0);
+
+      // Load saved theme
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.body.setAttribute('data-theme', savedTheme);
 
       // Prevent right-click on logo to disable download via context menu
       const logo = document.querySelector('.logo');
