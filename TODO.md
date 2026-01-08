@@ -9,4 +9,4 @@
 - [x] Remove Astro files: astro.config.mjs, src/ folder, old TODO.md
 - [x] Add README.md: explain local testing, deployment, toggle logic
 - [x] Test locally: open HTML files, check toggles, form, assets
-- [ ] Deploy to GitHub Pages
+- [x] Deploy to GitHub Pages
